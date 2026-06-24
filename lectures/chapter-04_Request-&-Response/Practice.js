@@ -8,9 +8,8 @@ const server = http.createServer((req, res) => {
         <html>
         <head><title>Form writing</title></head>
         <body>
-        <h1>This is Home Page</h1>
         <ul>
-        <li><a href="/">Home Page</a></li>
+        <li><a href="/home">Home Page</a></li>
         <li><a href="/men">men Page</a></li>
         <li><a href="/women">women Page</a></li>
         <li><a href="/kids">kids Page</a></li>
@@ -21,7 +20,7 @@ const server = http.createServer((req, res) => {
         `);
     return res.end();
   } else if(req.url === "/home") {
-    console.log("/women url triggered");
+    console.log("/home url triggered");
     res.setHeader("Content-Type", "text/html");
     res.write(`
         <html>
