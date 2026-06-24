@@ -20,6 +20,18 @@ const server = http.createServer((req, res) => {
         </html>
         `);
     return res.end();
+  } else if(req.url === "/home") {
+    console.log("/women url triggered");
+    res.setHeader("Content-Type", "text/html");
+    res.write(`
+        <html>
+        <head><title>Form writing</title></head>
+        <body>
+            <h1>Home Page</h1>
+        </body>
+        </html>    
+    `);
+    return res.end();
   } else if (req.url === "/men") {
     console.log("/men url triggered");
     res.setHeader("Content-Type", "text/html");
