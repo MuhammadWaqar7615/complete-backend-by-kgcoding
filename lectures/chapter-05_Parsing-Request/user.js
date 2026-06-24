@@ -1,7 +1,5 @@
-const http = require("http");
 const fs = require("fs/promises");
-const PORT = 3001;
-const server = http.createServer((req, res) => {
+const usersRequestHandler = (req, res) => {
   const body = [];
   if (req.url === "/") {
     res.setHeader("Content-Type", "text/html");
@@ -59,7 +57,5 @@ const server = http.createServer((req, res) => {
     `);
     return res.end();
   }
-});
-server.listen(PORT, () => {
-  console.log("server is listeningi at port: ", PORT);
-});
+};
+module.exports = usersRequestHandler;
