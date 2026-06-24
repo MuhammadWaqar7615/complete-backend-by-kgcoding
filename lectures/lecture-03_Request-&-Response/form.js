@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require('fs/promises');
 const PORT = 3001;
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
@@ -25,6 +26,10 @@ const server = http.createServer((req, res) => {
   } else if (req.url.toLowerCase() === "/form-detail" && req.method == "POST") {
     res.statusCode = 302;
     res.setHeader('location', '/');
+    async function fileCreation() {
+      await fs.writeFile('test.txt', 'hello')
+    }
+    fileCreation();
     res.end();
   } else {
     res.setHeader("Content-Type", "text/html");
