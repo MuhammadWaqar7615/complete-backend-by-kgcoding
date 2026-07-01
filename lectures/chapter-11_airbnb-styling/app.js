@@ -1,7 +1,12 @@
 const express = require("express");
+const path = require("path");
 const router = require("./routes/route");
+
 const app = express();
 const PORT = 3000;
+
+app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,7 +18,6 @@ app.use((req, res, next) => {
 
 app.use(router);
 
-
 app.listen(PORT, () => {
-  console.log("server is listening at port: ", PORT);
+  console.log(`Server is listening on port ${PORT}`);
 });
