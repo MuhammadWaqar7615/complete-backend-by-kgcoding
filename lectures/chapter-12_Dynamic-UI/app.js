@@ -1,18 +1,19 @@
 const express = require("express");
 const path = require("path");
 const router = require("./routes/route");
+const users = require("./data/users");
 
 const app = express();
 const PORT = 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 app.use(express.static(path.join(__dirname, "public")));
-app.set("view engine", "ejs");
-
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  console.log("Body:", req.body);
+  console.log(`method: "${req.method}";    url: "${req.url}"`);
+  console.log("Body: ", req.body);
   next();
 });
 
