@@ -5,9 +5,8 @@ const path = require('path');
 const users = require('../data/users');
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'home.html'));
+    res.render('home', {title: "practice"});
 })
-
 
 router.post('/form-detail', (req, res) => {
     users.push( { username: req.body.username, email: req.body.email});
@@ -16,11 +15,11 @@ router.post('/form-detail', (req, res) => {
 })
 
 router.get('/form-detail', (req, res) => {
-    res.render('formDetail', { users });
+    res.render('formDetail', { users, title: 'form detail' });
 });
 
 router.use((req, res) => {
-    res.sendFile(path.join(rootDir, 'views', '404.html'));
+    res.render('404', {title: 'Page not found'});
 })
 
 module.exports = router;
