@@ -8,15 +8,16 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(rootDir, 'views', 'home.html'));
 })
 
-router.post('/', (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'home.html'));
-})
 
 router.post('/form-detail', (req, res) => {
     users.push( { username: req.body.username, email: req.body.email});
-    res.sendFile(path.join(rootDir, 'views', 'formDetail.html'));
     console.log("users :", users);
+    res.redirect('/form-detail');
 })
+
+router.get('/form-detail', (req, res) => {
+    res.render('formDetail', { users });
+});
 
 router.use((req, res) => {
     res.sendFile(path.join(rootDir, 'views', '404.html'));
