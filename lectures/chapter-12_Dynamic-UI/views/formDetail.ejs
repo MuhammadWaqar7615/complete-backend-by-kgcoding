@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <title>Practice</title>
+  </head>
+  <body class="bg-blue-950 flex justify-center">
+    <section class="h-screen min-w-7xl mt-10 text-white">
+      <header>
+        <h1 class="text-4xl font-bold text-center">This is form detail page</h1>
+        <a href="/">Return to Home</a>
+      </header>
+      <main class="mt-10">
+        <table>
+          <thead>
+            <tr>
+              <th class="border border-white px-3">Username</th>
+              <th class="border border-white px-3">Email</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% users.forEach((user) => { %>
+              <tr>
+                <td class="border border-white px-3"><%= user.username %></td>
+                <td class="border border-white px-3"><%= user.email %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </main>
+    </section>
+  </body>
+</html>
