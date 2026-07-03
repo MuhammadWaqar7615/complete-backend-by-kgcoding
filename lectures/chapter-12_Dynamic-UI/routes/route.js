@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const rootDir = require('../utils/routesUtil');
 const path = require('path');
+const users = require('../data/users');
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(rootDir, 'views', 'home.html'));
@@ -12,7 +13,9 @@ router.post('/', (req, res) => {
 })
 
 router.post('/form-detail', (req, res) => {
+    users.push( { username: req.body.username, email: req.body.email});
     res.sendFile(path.join(rootDir, 'views', 'formDetail.html'));
+    console.log("users :", users);
 })
 
 router.use((req, res) => {
