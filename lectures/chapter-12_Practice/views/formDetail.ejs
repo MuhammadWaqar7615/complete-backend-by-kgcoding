@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+  </head>
+  <body>
+      <%- include('../partials/header') %>
+      <main class="mt-10">
+        <table>
+          <thead>
+            <tr>
+              <th class="border border-black px-3">Username</th>
+              <th class="border border-black px-3">Gender</th>
+              <th class="border border-black px-3">Email</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% users.forEach((user) => { %>
+              <tr>
+                <td class="border border-black px-3"><%= user.username %></td>
+                <td class="border border-black px-3"><%= user.gender %></td>
+                <td class="border border-black px-3"><%= user.email %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </main>
+  </body>
+</html>
