@@ -2,24 +2,11 @@ const express = require('express');
 const router = express.Router();
 const rootDir = require('../utils/routesUtil');
 const path = require('path');
-const users = require('../data/users');
+const { getHome, postFormDetail, getFormDetail, errorController } = require('../controller/controllers');
 
-router.get('/', (req, res) => {
-    res.render('home', {title: "practice", bodyUrl: req.url});
-})
-
-router.post('/form-detail', (req, res) => {
-    users.push( { username: req.body.username, gender: req.body.gender, email: req.body.email});
-    console.log("users :", users);
-    res.redirect('/form-detail');
-})
-
-router.get('/form-detail', (req, res) => {
-    res.render('formDetail', { users, title: 'form detail', bodyUrl: req.url });
-});
-
-router.use((req, res) => {
-    res.render('404', {title: 'Page not found'});
-})
+router.get('/', getHome);
+router.post('/form-detail', postFormDetail);
+router.get('/form-detail', getFormDetail);
+router.use(errorController)
 
 module.exports = router;
