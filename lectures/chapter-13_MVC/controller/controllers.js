@@ -8,7 +8,6 @@ exports.getHome = (req, res) => {
 exports.postFormDetail = (req, res) => {
     const userData = new Users(req.body.username, req.body.gender, req.body.email)
     userData.save()
-
     // users.push( { username: req.body.username, gender: req.body.gender, email: req.body.email});
     // console.log("users :", users);
     res.redirect('/form-detail');
