@@ -11,7 +11,6 @@ exports.postFormDetail = (req, res) => {
 
     // users.push( { username: req.body.username, gender: req.body.gender, email: req.body.email});
     // console.log("users :", users);
-    
     res.redirect('/form-detail');
 }
 
