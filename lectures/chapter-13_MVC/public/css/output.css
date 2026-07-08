@@ -170,6 +170,9 @@
   }
 }
 @layer utilities {
+  .static {
+    position: static;
+  }
   .m-3 {
     margin: calc(var(--spacing) * 3);
   }
