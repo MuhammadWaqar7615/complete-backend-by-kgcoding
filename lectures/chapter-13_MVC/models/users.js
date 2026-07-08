@@ -6,11 +6,13 @@ let users = [];
 module.exports = users;
 
 module.exports = class UsersData {
+
   constructor(username, gender, email) {
     this.username = username;
     this.email = email;
     this.gender = gender;
   }
+
   save() {
     users.push(this);
     const usersPath = path.join(rootDir, "data", "users.json");
@@ -18,12 +20,10 @@ module.exports = class UsersData {
       console.log("file wrting errors: ", err);
     });
   }
+
   static async fetchAll() {
-    // console.log("fetch all function triggered");
     const usersPath = path.join(rootDir, "data", "users.json");
-    const data = await fs.promises.readFile(usersPath, (err) => {
-        console.log("error while reading file: ", err);
-    });
+    const data = await fs.promises.readFile(usersPath);
     users = JSON.parse(data);
     return users;
   }
