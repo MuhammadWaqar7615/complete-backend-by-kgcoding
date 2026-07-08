@@ -2,11 +2,7 @@ const path = require("path");
 const rootDir = require("../utils/routesUtil");
 const fs = require("fs");
 
-let users = [];
-module.exports = users;
-
 module.exports = class UsersData {
-
   constructor(username, gender, email) {
     this.username = username;
     this.email = email;
@@ -14,17 +10,21 @@ module.exports = class UsersData {
   }
 
   save() {
-    users.push(this);
-    const usersPath = path.join(rootDir, "data", "users.json");
-    fs.writeFile(usersPath, JSON.stringify(users), (err) => {
-      console.log("file wrting errors: ", err);
+    UsersData.fetchAll((users) => {
+      users.push(this);
+      const usersPath = path.join(rootDir, "data", "users.json");
+      fs.writeFile(usersPath, JSON.stringify(users), (err) => {
+        console.log("file wrting errors: ", err);
+      });
     });
   }
 
-  static async fetchAll() {
+  static fetchAll(callback) {
     const usersPath = path.join(rootDir, "data", "users.json");
-    const data = await fs.promises.readFile(usersPath);
-    users = JSON.parse(data);
-    return users;
+    fs.readFile(usersPath, (err, data) => {
+      console.log("file read: ", err, data);
+      // callback(!err ? JSON.parse(data) : []);
+      callback((err || !data || data.length === 0) ? [] : JSON.parse(data));
+    });
   }
 };

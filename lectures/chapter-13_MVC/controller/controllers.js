@@ -10,10 +10,10 @@ exports.postFormDetail = (req, res) => {
     res.redirect('/form-detail');
 }
 
-exports.getFormDetail = async (req, res) => {
-    const users = await UsersData.fetchAll();
-    console.log("users: ", users)
-    res.render('formDetail', { users, title: 'form detail', bodyUrl: req.url });
+exports.getFormDetail = (req, res) => {
+    UsersData.fetchAll(users => {
+        res.render('formDetail', { users, title: 'form detail', bodyUrl: req.url });
+    });
 }
 
 exports.errorController = (req, res) => {
