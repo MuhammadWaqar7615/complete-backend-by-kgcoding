@@ -1,20 +1,19 @@
-const Users = require('../models/users');
-const users = require('../models/users')
+const UsersData = require('../models/users');
 
-exports.getHome = (req, res) => {
+exports.getUsers = (req, res) => {
     res.render('home', {title: "practice", bodyUrl: req.url});
 }
 
 exports.postFormDetail = (req, res) => {
-    const userData = new Users(req.body.username, req.body.gender, req.body.email)
+    const userData = new UsersData(req.body.username, req.body.gender, req.body.email)
     userData.save()
-    // users.push( { username: req.body.username, gender: req.body.gender, email: req.body.email});
-    // console.log("users :", users);
     res.redirect('/form-detail');
 }
 
-exports.getFormDetail = (req, res) => {
-    res.render('formDetail', { Users, title: 'form detail', bodyUrl: req.url });
+exports.getFormDetail = async (req, res) => {
+    const users = await UsersData.fetchAll();
+    console.log("users: ", users)
+    res.render('formDetail', { users, title: 'form detail', bodyUrl: req.url });
 }
 
 exports.errorController = (req, res) => {
