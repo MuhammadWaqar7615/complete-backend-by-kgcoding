@@ -13,12 +13,13 @@
           </thead>
         
           <tbody>
+            <% users.forEach((user) => { %>
               <tr>
-                  <%= console.log("Users: ", Users.username) %>
-                <td class="border border-black px-3"><%= Users.username %></td>
-                <td class="border border-black px-3"><%= Users.gender %></td>
-                <td class="border border-black px-3"><%= Users.email %></td>
+                <td class="border border-black px-3"><%= user.username %></td>
+                <td class="border border-black px-3"><%= user.gender %></td>
+                <td class="border border-black px-3"><%= user.email %></td>
               </tr>
+            <% }) %>
           </tbody>
         </table>
       </main>
