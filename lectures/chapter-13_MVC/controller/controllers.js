@@ -9,7 +9,6 @@ exports.postFormDetail = (req, res) => {
     userData.save()
     res.redirect('/form-detail');
 }
-
 exports.getFormDetail = (req, res) => {
     UsersData.fetchAll(users => {
         res.render('formDetail', { users, title: 'form detail', bodyUrl: req.url });
